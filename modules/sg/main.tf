@@ -1,35 +1,7 @@
-resource "aws_security_group" "public_instance_sg" {
+resource "aws_security_group" "instance_sg" {
 
-  name        = "${var.project_tag_in}-${var.public_instance_sg_tag}"
-  vpc_id      = var.vpc_id_in
-  description = "public_ec2_security_group"
-
-  ingress {
-
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-
-  }
-
-  ingress {
-
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-
-  }
-
-  ingress {
-
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-
-  }
+  name   = "${var.project_tag_in}-${var.instance_sg_tag}"
+  vpc_id = var.vpc_id_in
 
   egress {
     from_port   = 0
@@ -40,7 +12,21 @@ resource "aws_security_group" "public_instance_sg" {
 
   tags = {
 
-    Name = "${var.project_tag_in}-${var.public_instance_sg_tag}"
+    Name = "${var.project_tag_in}-${var.instance_sg_tag}"
   }
 }
+
+
+# Ingress Rules
+resource "aws_security_group_rule" "instance_sg_ingress" {
+  for_each = { for port in var.allowed_ports_in : port => port }
+
+  type              = "ingress"
+  from_port         = each.value
+  to_port           = each.value
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.instance_sg.id
+}
+
 

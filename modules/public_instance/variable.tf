@@ -1,52 +1,31 @@
 variable "ami_id_in" {}
-
-
-variable "instance_type_t2_micro" {
-
-  default = "t2.micro"
-
-}
-
-
-variable "instance_type_t2_medium" {
-
-  default = "t2.medium"
-
-}
-
+variable "instance_type_in" {}
+variable "subnet_1_id_in" {}
+variable "instance_sg_in" {}
+variable "project_tag_in" {}
 
 
 variable "key_name" {
-
   default = "pri_mum"
-
 }
-
-
 
 variable "associate_public_ip_address" {
-
   default = "true"
-
 }
 
-
-
-variable "public_instance_tag" {
-
+variable "instance_tag" {
   type    = string
-  default = "public"
-
+  default = ""
 }
 
-
-variable "public_instance_private_ip" {
-
-  type    = string
-  default = "192.168.2.12"
-
+variable "dns_entry_content_in" {
+  type = string
 }
 
-variable "subnet_1_id_in" {}
-variable "public_instance_sg_in" {}
-variable "project_tag_in" {}
+variable "confirm_dns_update_in" {}
+
+
+variable "linux_user_in" {
+  
+}
+

@@ -1,13 +1,13 @@
+variable "vpc_cidr_in" {}
+variable "subnet_01_cidr_in" {}
+variable "subnet_02_cidr_in" {}
+variable "project_tag_in" {}
+
 variable "vpc_tag" {
   type    = string
   default = "vpc"
 }
 
-variable "vpc_cidr_in" {}
-
-variable "subnet_01_cidr_in" {}
-
-variable "subnet_02_cidr_in" {}
 
 variable "subnet_01_tag" {
   type    = string
@@ -40,16 +40,16 @@ variable "cidr_open" {
 
 variable "public_routetable_tag" {
   type    = string
-  default = "public_route-table"
+  default = "public_route_table"
 
 }
 
 variable "private_routetable_tag" {
   type    = string
-  default = "private_route-table"
+  default = "private_route_table"
 
 }
 
 
-variable "project_tag_in" {}
+
 

@@ -3,6 +3,5 @@
 provider "aws" {
   region = "ap-south-1"
 
-  access_key = "------"
-  secret_key = "------"
+  shared_credentials_files = ["/home/vijaydurai/.aws/credentials"]
 }

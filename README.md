@@ -47,6 +47,25 @@ variable "amazon_ec2_ami_id" {
   default = "------"      # Define the Amazon EC2 AMI ID
 }
 
+variable "t2_micro_instance_type" {
+
+  default = "t2.micro"
+
+}
+
+
+variable "t2_medium_instance_type" {
+
+  default = "t2.medium"
+
+}
+
+
+variable "t3_small_instance_type" {
+
+  default = "t3.small"
+
+}
 
 Note: 
 
