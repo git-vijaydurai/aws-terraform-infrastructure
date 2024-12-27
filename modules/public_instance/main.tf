@@ -21,7 +21,7 @@ resource "aws_instance" "instance" {
 
 
   provisioner "file" {
-    source      = "/home/e1087/infra/${var.project_tag_in}/scripts/aws_cli.sh"
+    source      = "/home/e1087/live-infra/${var.project_tag_in}/scripts/aws_cli.sh"
     destination = "aws_cli.sh"
   }
 
@@ -33,7 +33,7 @@ resource "aws_instance" "instance" {
   connection {
     type        = "ssh"
     user        = "${var.linux_user_in}"
-    private_key = file("/home/e1087/pri_mum.pem")
+    private_key = file("/home/e1087/pri_ohio.pem")
     host        = self.public_ip
   }
 
@@ -49,7 +49,7 @@ resource "aws_instance" "instance" {
     connection {
       type        = "ssh"
       user        = "${var.linux_user_in}"
-      private_key = file("/home/e1087/pri_mum.pem")
+      private_key = file("/home/e1087/pri_ohio.pem")
       host        = self.public_ip
     }
   }
@@ -81,7 +81,7 @@ resource "null_resource" "dns_re-entry" {
     connection {
       type        = "ssh"
       user        = "${var.linux_user_in}"
-      private_key = file("/home/e1087/pri_mum.pem")
+      private_key = file("/home/e1087/pri_ohio.pem")
       host        = aws_instance.instance.public_ip
     }
 

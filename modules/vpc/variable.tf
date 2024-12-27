@@ -21,12 +21,12 @@ variable "subnet_02_tag" {
 
 variable "az_zone_a" {
   type    = string
-  default = "ap-south-1a"
+  default = "us-east-2a"
 }
 
 variable "az_zone_b" {
   type    = string
-  default = "ap-south-1b"
+  default = "us-east-2b"
 }
 
 variable "igw_tag" {

@@ -14,20 +14,26 @@ variable "subnet_02_cidr" {
 
 
 variable "current_project_tag" {
-  default = "-"
+  default = "-"                                                  #Enter Project Name
 }
 
 
 variable "ubuntu_ec2_ami_id" {
 
-  default = "ami-0522ab6e1ddcc7055"
+  default = "ami-036841078a4b68e14"
 
 }
 
 
 variable "amazon_ec2_ami_id" {
 
-  default = "ami-08718895af4dfa033"
+  default = "ami-0b4624933067d393a"
+
+}
+
+variable "t2_nano_instance_type" {
+
+  default = "t2.nano"
 
 }
 
@@ -51,6 +57,24 @@ variable "t3_small_instance_type" {
 
 }
 
+variable "t3a_xlarge_instance_type" {
+
+  default = "t3a.xlarge"
+
+}
+
+
+variable "c4_2xlarge_instance_type" {
+
+  default = "c4.2xlarge"
+
+}
+
+variable "c4_4xlarge_instance_type" {
+
+  default = "c4.4xlarge"
+
+}
 
 variable "allowed_ports" {
   description = "List of ports to allow"

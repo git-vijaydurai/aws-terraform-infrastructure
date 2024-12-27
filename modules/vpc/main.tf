@@ -1,5 +1,5 @@
 
-resource "aws_vpc" "mum_vpc" {
+resource "aws_vpc" "vpc" {
 
   cidr_block       = var.vpc_cidr_in
   instance_tenancy = "default"
@@ -10,7 +10,7 @@ resource "aws_vpc" "mum_vpc" {
 }
 
 resource "aws_subnet" "subnet_1" {
-  vpc_id            = aws_vpc.mum_vpc.id
+  vpc_id            = aws_vpc.vpc.id
   cidr_block        = var.subnet_01_cidr_in
   availability_zone = var.az_zone_a
 
@@ -20,7 +20,7 @@ resource "aws_subnet" "subnet_1" {
 }
 
 resource "aws_subnet" "subnet_2" {
-  vpc_id            = aws_vpc.mum_vpc.id
+  vpc_id            = aws_vpc.vpc.id
   cidr_block        = var.subnet_02_cidr_in
   availability_zone = var.az_zone_b
 
@@ -31,7 +31,7 @@ resource "aws_subnet" "subnet_2" {
 
 resource "aws_internet_gateway" "igw" {
 
-  vpc_id = aws_vpc.mum_vpc.id
+  vpc_id = aws_vpc.vpc.id
 
   tags = {
     Name = "${var.project_tag_in}-${var.igw_tag}"
@@ -40,7 +40,7 @@ resource "aws_internet_gateway" "igw" {
 
 
 resource "aws_route_table" "public_route_table" {
-  vpc_id = aws_vpc.mum_vpc.id
+  vpc_id = aws_vpc.vpc.id
 
   route {
     cidr_block = var.cidr_open
@@ -59,7 +59,7 @@ resource "aws_route_table_association" "public_route_associate" {
 
 
 resource "aws_route_table" "private_route_table" {
-  vpc_id = aws_vpc.mum_vpc.id
+  vpc_id = aws_vpc.vpc.id
 
 
   tags = {

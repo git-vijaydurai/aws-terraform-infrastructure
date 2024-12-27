@@ -35,7 +35,7 @@ module "instance_module" {
   subnet_1_id_in        = module.vpc_module.subnet_1_id_out
   instance_sg_in        = module.sg_module.instance_sg_out
   project_tag_in        = var.current_project_tag
-  instance_type_in      = var.t3_small_instance_type
+  instance_type_in      = var.c4_4xlarge_instance_type
   dns_entry_content_in  = local.dns_entry_content
   confirm_dns_update_in = var.confirm_dns_update
   ami_id_in             = var.amazon_ec2_ami_id

@@ -69,9 +69,6 @@ variable "t3_small_instance_type" {
 
 Note: 
 
-Leave the existing values if they are already set correctly for your setup.
-
-or
 
 Replace the existing values with the appropriate information for your project.
 

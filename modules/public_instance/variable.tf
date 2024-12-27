@@ -6,7 +6,7 @@ variable "project_tag_in" {}
 
 
 variable "key_name" {
-  default = "pri_mum"
+  default = "pri_ohio"
 }
 
 variable "associate_public_ip_address" {
