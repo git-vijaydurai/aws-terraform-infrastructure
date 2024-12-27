@@ -1,35 +1,35 @@
-variable "vpc_cidr" {
-  default = "192.168.-.0/24"
-
-}
-
-variable "subnet_01_cidr" {
-  default = "192.168.-.0/28"
-
-}
-
-variable "subnet_02_cidr" {
-  default = "192.168.-.16/28"
-}
+#Enter Project Name
 
 
 variable "current_project_tag" {
-  default = "-"                                                  #Enter Project Name
+
+  description = "Note: The current project tag and infra folder name must be the same"
+}
+
+variable "confirm_dns_update" {
+  description = "Enter 'yes' or 'no' to indicate whether to run the DNS update."
+  default     = "no"
+}
+
+variable "enter_user_name_based_on_ami" {
+  description = "Enter the username (e.g., 'ubuntu' or 'ec2-user'). The appropriate image will be selected based on your input."
+}
+
+variable "ip_range" {
+  description = "Enter the third octet (e.g., '0.0.third_octet.0/0') to allow flexibility in subnet allocation."
 }
 
 
-variable "ubuntu_ec2_ami_id" {
+#To avoid manual changing AMI entries, I have used a map-type variable
 
-  default = "ami-036841078a4b68e14"
+variable "ec2_ami_ids" {
 
+  default = {
+    ubuntu   = "ami-036841078a4b68e14"
+    ec2-user = "ami-0b4624933067d393a"
+  }
 }
 
-
-variable "amazon_ec2_ami_id" {
-
-  default = "ami-0b4624933067d393a"
-
-}
 
 variable "t2_nano_instance_type" {
 
@@ -43,19 +43,18 @@ variable "t2_micro_instance_type" {
 
 }
 
-
-variable "t2_medium_instance_type" {
-
-  default = "t2.medium"
-
-}
-
-
 variable "t3_small_instance_type" {
 
   default = "t3.small"
 
 }
+
+variable "t2_medium_instance_type" {
+
+  default = "t3.medium"
+
+}
+
 
 variable "t3a_xlarge_instance_type" {
 
@@ -82,14 +81,4 @@ variable "allowed_ports" {
   default     = [22, 80, 443]
 }
 
-variable "confirm_dns_update" {
 
-  description = "Give  'yes or no' to run DNS update or Not"
-  default     = "no"
-}
-
-
-variable "enter_user_name_based_on_ami" {
-
-  
-}

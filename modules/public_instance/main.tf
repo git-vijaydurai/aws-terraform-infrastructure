@@ -26,13 +26,24 @@ resource "aws_instance" "instance" {
   }
 
 
-  provisioner "local-exec" {                                      #Intha type provisioner touch la vachikanum nu try panni erukka avulotha
+  provisioner "local-exec" { #Intha type provisioner touch la vachikanum nu try panni erukka avulotha
     command = "echo Welcome_$(date +'%Y%m%d_%H%M%S')"
   }
 
+
+  provisioner "local-exec" {
+    command = <<EOF
+      printf "Private IP: ${self.private_ip}\nUsername: ${var.linux_user_in}\n" > current_instance_info.txt
+    EOF
+  }
+
+
+
+
+
   connection {
     type        = "ssh"
-    user        = "${var.linux_user_in}"
+    user        = var.linux_user_in
     private_key = file("/home/e1087/pri_ohio.pem")
     host        = self.public_ip
   }
@@ -48,7 +59,7 @@ resource "aws_instance" "instance" {
 
     connection {
       type        = "ssh"
-      user        = "${var.linux_user_in}"
+      user        = var.linux_user_in
       private_key = file("/home/e1087/pri_ohio.pem")
       host        = self.public_ip
     }
@@ -80,7 +91,7 @@ resource "null_resource" "dns_re-entry" {
 
     connection {
       type        = "ssh"
-      user        = "${var.linux_user_in}"
+      user        = var.linux_user_in
       private_key = file("/home/e1087/pri_ohio.pem")
       host        = aws_instance.instance.public_ip
     }
