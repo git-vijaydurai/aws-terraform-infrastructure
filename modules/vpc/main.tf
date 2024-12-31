@@ -19,6 +19,7 @@ resource "aws_subnet" "subnet_1" {
   }
 }
 
+
 resource "aws_subnet" "subnet_2" {
   vpc_id            = aws_vpc.vpc.id
   cidr_block        = var.subnet_02_cidr_in
@@ -28,6 +29,29 @@ resource "aws_subnet" "subnet_2" {
     Name = "${var.project_tag_in}-${var.subnet_02_tag}"
   }
 }
+
+
+resource "aws_subnet" "subnet_3" {
+  vpc_id            = aws_vpc.vpc.id
+  cidr_block        = var.subnet_03_cidr_in
+  availability_zone = var.az_zone_b
+
+  tags = {
+    Name = "${var.project_tag_in}-${var.subnet_03_tag}"
+  }
+}
+
+
+resource "aws_subnet" "subnet_4" {
+  vpc_id            = aws_vpc.vpc.id
+  cidr_block        = var.subnet_04_cidr_in
+  availability_zone = var.az_zone_a
+
+  tags = {
+    Name = "${var.project_tag_in}-${var.subnet_04_tag}"
+  }
+}
+
 
 resource "aws_internet_gateway" "igw" {
 
@@ -52,8 +76,10 @@ resource "aws_route_table" "public_route_table" {
   }
 }
 
+
 resource "aws_route_table_association" "public_route_associate" {
-  subnet_id      = aws_subnet.subnet_1.id
+  count         = 2
+  subnet_id     = element([aws_subnet.subnet_1.id, aws_subnet.subnet_3.id], count.index)
   route_table_id = aws_route_table.public_route_table.id
 }
 
@@ -61,6 +87,10 @@ resource "aws_route_table_association" "public_route_associate" {
 resource "aws_route_table" "private_route_table" {
   vpc_id = aws_vpc.vpc.id
 
+  route {
+    cidr_block     = "0.0.0.0/0"
+    nat_gateway_id = var.nat_gateway_id_in
+  }
 
   tags = {
     Name = "${var.project_tag_in}-${var.private_routetable_tag}"
@@ -68,6 +98,9 @@ resource "aws_route_table" "private_route_table" {
 }
 
 resource "aws_route_table_association" "private_route_associate" {
-  subnet_id      = aws_subnet.subnet_2.id
+  count         = 2
+  subnet_id     = element([aws_subnet.subnet_2.id, aws_subnet.subnet_4.id], count.index)
   route_table_id = aws_route_table.private_route_table.id
 }
+
+

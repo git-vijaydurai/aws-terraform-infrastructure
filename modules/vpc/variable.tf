@@ -1,6 +1,8 @@
 variable "vpc_cidr_in" {}
 variable "subnet_01_cidr_in" {}
 variable "subnet_02_cidr_in" {}
+variable "subnet_03_cidr_in" {}
+variable "subnet_04_cidr_in" {}
 variable "project_tag_in" {}
 
 variable "vpc_tag" {
@@ -17,6 +19,16 @@ variable "subnet_01_tag" {
 variable "subnet_02_tag" {
   type    = string
   default = "subnet-02"
+}
+
+variable "subnet_03_tag" {
+  type    = string
+  default = "subnet-03"
+}
+
+variable "subnet_04_tag" {
+  type    = string
+  default = "subnet-04"
 }
 
 variable "az_zone_a" {
@@ -50,6 +62,8 @@ variable "private_routetable_tag" {
 
 }
 
+variable "nat_gateway_id_in" {
 
+}
 
 

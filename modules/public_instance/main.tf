@@ -37,10 +37,6 @@ resource "aws_instance" "instance" {
     EOF
   }
 
-
-
-
-
   connection {
     type        = "ssh"
     user        = var.linux_user_in
