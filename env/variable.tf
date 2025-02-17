@@ -3,7 +3,7 @@
 
 variable "current_project_tag" {
 
-  description = "Note: The current project tag and infra folder name must be the same"
+  description = "Note: The current project tag"
 }
 
 variable "confirm_dns_update" {
@@ -82,3 +82,9 @@ variable "allowed_ports" {
 }
 
 
+variable "do_you_want_nat_gateway" {
+
+  type    = bool
+  default = false
+
+}

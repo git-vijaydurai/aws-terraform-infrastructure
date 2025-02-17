@@ -1,5 +1,4 @@
 #!/bin/bash
-
 HOSTED_ZONE_ID="Z094166638K8WP1O0K6YY"
 NEW_RECORD_NAME=$(hostname)
 NEW_IP_ADDRESS=$(curl ifconfig.me)

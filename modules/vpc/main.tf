@@ -87,15 +87,20 @@ resource "aws_route_table_association" "public_route_associate" {
 resource "aws_route_table" "private_route_table" {
   vpc_id = aws_vpc.vpc.id
 
-  route {
-    cidr_block     = "0.0.0.0/0"
-    nat_gateway_id = var.nat_gateway_id_in
+  dynamic "route" {
+    for_each = var.nat_gateway_id_in != null && var.nat_gateway_id_in != "" ? [1] : []
+
+    content {
+      cidr_block     = "0.0.0.0/0"
+      nat_gateway_id = var.nat_gateway_id_in
+    }
   }
 
   tags = {
     Name = "${var.project_tag_in}-${var.private_routetable_tag}"
   }
 }
+
 
 resource "aws_route_table_association" "private_route_associate" {
   count         = 2

@@ -26,7 +26,11 @@ resource "aws_instance" "instance" {
   }
 
 
-  provisioner "local-exec" { #Intha type provisioner touch la vachikanum nu try panni erukka avulotha
+
+#Intha type provisioner touch la vachikanum nu try panni erukka avulotha
+
+
+  provisioner "local-exec" { 
     command = "echo Welcome_$(date +'%Y%m%d_%H%M%S')"
   }
 
