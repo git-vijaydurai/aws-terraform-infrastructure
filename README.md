@@ -1,74 +1,55 @@
-Setting Up a New Configuration or Using Existing Values
+Notes
+
+1. To apply the Terraform configuration, use the following command with the variable.tfvars file:
+
+terraform apply --auto-approve -var-file="variable.tfvars"
 
 
-To create a new setup or use the already defined values, follow these steps:
-
-1. Clone the Repository
-
-Clone this repository and navigate to the env folder.
-
-2. Edit the provider.tf File
-
-Open the provider.tf file. Provide your AWS credentials as shown below:
-
-provider "aws" {
-  region     = "------"   # Set your AWS region here
-  access_key = "------"   # Set your AWS access key here
-  secret_key = "------"   # Set your AWS secret key here
-}
+2. Alternatively, you can pass values manually in the following order:
 
 
-3. Edit the variable.tf File
-
-Next, edit the variable.tf file. Set the values according to your requirements, or leave them as they are if they’re already configured correctly:
-
-
-variable "vpc_cidr" {
-  default = "-.-.-.-/-"   # Define your VPC CIDR block
-}
-
-variable "subnet_01_cidr" {
-  default = "-.-.-.-/-"   # Define CIDR block for Subnet 01
-}
-
-variable "subnet_02_cidr" {
-  default = "-.-.-.-/-"   # Define CIDR block for Subnet 02
-}
-
-variable "current_project_tag" {
-  default = "------"      # Define your project tag
-}
-
-variable "ubuntu_22_ami_id" {
-  default = "------"      # Define the Ubuntu 22.04 AMI ID
-}
-
-variable "amazon_ec2_ami_id" {
-  default = "------"      # Define the Amazon EC2 AMI ID
-}
-
-variable "t2_micro_instance_type" {
-
-  default = "t2.micro"
-
-}
+terraform apply --auto-approve \
+  -var-file="variable.tfvars" \
+  -var="current_project_tag=..." \
+  -var="ip_range=..." \
+  -var="enter_user_name_based_on_ami=..."
 
 
-variable "t2_medium_instance_type" {
+3. User Selection:
 
-  default = "t2.medium"
-
-}
-
-
-variable "t3_small_instance_type" {
-
-  default = "t3.small"
-
-}
-
-Note: 
+You can enter either ec2-user or ubuntu for the enter_user_name_based_on_ami variable.
+The system is configured to determine the correct username based on the AMI automatically.
 
 
-Replace the existing values with the appropriate information for your project.
+4. Ensure that Terraform is installed and properly configured before running these commands.
+
+Tainting a Module:
+
+
+If you need to taint a specific module, use the following command:
+
+
+terraform taint <module_name>
+
+For example:
+
+terraform taint module.instance_module.aws_instance.instance
+
+
+Important Instructions:
+
+
+If any of these variables are left empty, Terraform will use the defaults (variable.tf) or prompt for input.
+
+
+current_project_tag          = "sample"
+confirm_dns_update           = "no"         # Keep this as "no" because this configures my own domain
+enter_user_name_based_on_ami = "ubuntu"
+ip_range                     = "130"
+do_you_want_nat_gateway      = false
+
+
+
+
+
 

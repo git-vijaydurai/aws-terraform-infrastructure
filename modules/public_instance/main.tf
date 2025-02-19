@@ -52,8 +52,7 @@ resource "aws_instance" "instance" {
     inline = [
       "sudo hostnamectl set-hostname ${var.project_tag_in}.vijaydurai3.site",
       "bash aws_cli.sh",
-      "sleep 5",
-      "bash dns_entry.sh"
+      "sleep 5"
     ]
 
 

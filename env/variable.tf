@@ -83,8 +83,5 @@ variable "allowed_ports" {
 
 
 variable "do_you_want_nat_gateway" {
-
-  type    = bool
-  default = false
-
+  type = bool
 }

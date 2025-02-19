@@ -52,7 +52,7 @@ module "nat_gateway_module" {
   count          = var.do_you_want_nat_gateway ? 1 : 0
   project_tag_in = local.current_project_tag
   subnet_1_id_in = module.vpc_module.subnet_1_id_out
-  
+
 
 }
 
@@ -70,7 +70,3 @@ module "instance_module" {
 
 }
 
-
-
-# terraform taint module.instance_module.aws_instance.instance
-# terraform apply --auto-approve -var-file="variable.tfvars" -var="current_project_tag=ohio" -var="ip_range=122" -var="enter_user_name_based_on_ami=ec2-user"
