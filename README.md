@@ -1,4 +1,4 @@
-Notes
+# Notes
 
 1. To apply the Terraform configuration, use the following command with the variable.tfvars file:
 
