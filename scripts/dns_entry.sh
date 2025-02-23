@@ -1,4 +1,5 @@
 #!/bin/bash
+
 HOSTED_ZONE_ID="Z094166638K8WP1O0K6YY"
 NEW_RECORD_NAME=$(hostname)
 NEW_IP_ADDRESS=$(curl ifconfig.me)
@@ -23,20 +24,19 @@ NEW_RECORD='{
 
 # Create a temporary JSON file for the change batch
 
-echo "{
-  \"Changes\": [$NEW_RECORD]
-}" > change-batch.json
+# echo "{
+#   \"Changes\": [$NEW_RECORD]
+# }" > change-batch.json
+
+echo "{\"Changes\": [$NEW_RECORD]}" > change-batch.json
+
 
 
 # Use AWS CLI to change resource record sets
 
-aws route53 change-resource-record-sets \
-    --hosted-zone-id "$HOSTED_ZONE_ID" \
-    --change-batch file://change-batch.json
-
+aws route53 change-resource-record-sets --hosted-zone-id "$HOSTED_ZONE_ID" --change-batch file://change-batch.json
 
 # Clean up the temporary JSON file
-
 
 rm -f change-batch.json
 

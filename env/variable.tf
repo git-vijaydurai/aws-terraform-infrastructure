@@ -78,10 +78,15 @@ variable "c4_4xlarge_instance_type" {
 variable "allowed_ports" {
   description = "List of ports to allow"
   type        = list(number)
-  default     = [22, 80, 443]
 }
 
 
 variable "do_you_want_nat_gateway" {
   type = bool
+}
+
+
+
+variable "instance_root_volume_size" {
+
 }

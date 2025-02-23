@@ -1,4 +1,4 @@
-#Public_ec2_info
+# Public_ec2_info
 
 resource "aws_instance" "instance" {
 
@@ -10,6 +10,12 @@ resource "aws_instance" "instance" {
   associate_public_ip_address = var.associate_public_ip_address
   vpc_security_group_ids      = [var.instance_sg_in]
   iam_instance_profile        = "admin"
+
+  root_block_device {
+    volume_size           = var.instance_root_volume_size_in    
+    volume_type           = "gp3" 
+    delete_on_termination = true 
+  }
 
 
 
@@ -27,10 +33,10 @@ resource "aws_instance" "instance" {
 
 
 
-#Intha type provisioner touch la vachikanum nu try panni erukka avulotha
+  # Intha type provisioner touch la vachikanum nu try panni erukka avulotha
 
 
-  provisioner "local-exec" { 
+  provisioner "local-exec" {
     command = "echo Welcome_$(date +'%Y%m%d_%H%M%S')"
   }
 
@@ -51,8 +57,7 @@ resource "aws_instance" "instance" {
   provisioner "remote-exec" {
     inline = [
       "sudo hostnamectl set-hostname ${var.project_tag_in}.vijaydurai3.site",
-      "bash aws_cli.sh",
-      "sleep 5"
+      "bash aws_cli.sh"
     ]
 
 
@@ -84,7 +89,7 @@ resource "null_resource" "dns_re-entry" {
 
   provisioner "remote-exec" {
     inline = [
-      "bash dns_entry.sh",
+      "bash dns_entry.sh"
     ]
 
 
