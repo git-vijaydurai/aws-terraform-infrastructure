@@ -18,8 +18,12 @@ Alternatively, you can pass values manually in the following order:
 terraform apply --auto-approve \
   -var-file="variable.tfvars" \
   -var="current_project_tag=..." \
+  -var="confirm_dns_update=..." \
+  -var="enter_user_name_based_on_ami=..." \
   -var="ip_range=..." \
-  -var="enter_user_name_based_on_ami=..."
+  -var="do_you_want_nat_gateway=..." \
+  -var="instance_root_volume_size=..." \
+  -var="allowed_ports=[22, 80, 443]"
 ```  
 
 ### ✅ 3. User Selection  
@@ -55,9 +59,11 @@ If any of these variables are left **empty**, Terraform will use the **defaults*
 
 ```hcl
 current_project_tag          = "sample"
-confirm_dns_update           = "no"      # Keep this as "no" because this configures my own domain.
-enter_user_name_based_on_ami = "ubuntu"  # Automatically selects AMI based on this value.
-ip_range                     = "130"     # Provide a value within the range of 0 to 255.
-do_you_want_nat_gateway      = false     # Set to "false" if private internet access is not needed.
+confirm_dns_update           = "no"          # Keep this as "no" to use your own domain.
+enter_user_name_based_on_ami = "ubuntu"      # Automatically selects the AMI based on this value.
+ip_range                     = "130"         # Provide a value between 0 and 255.
+do_you_want_nat_gateway      = false         # Set to "false" if private internet access is not required.
+instance_root_volume_size    = "20"          # Modify this to change the root volume size.
+allowed_ports                = [22, 80, 443] # Add any additional ports as needed.
 ```
 
