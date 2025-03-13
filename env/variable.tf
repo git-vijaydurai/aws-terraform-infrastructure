@@ -25,8 +25,8 @@ variable "ip_range" {
 variable "ec2_ami_ids" {
 
   default = {
-    ubuntu   = "ami-036841078a4b68e14"
-    ec2-user = "ami-0b4624933067d393a"
+    ubuntu   = "ami-0cb91c7de36eed2cb"
+    ec2-user = "ami-0fc82f4dabc05670b"
   }
 }
 
@@ -90,3 +90,5 @@ variable "do_you_want_nat_gateway" {
 variable "instance_root_volume_size" {
 
 }
+
+variable "instance_key_name" {}

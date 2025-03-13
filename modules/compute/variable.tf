@@ -16,9 +16,7 @@ variable "instance_tag" {
   default = ""
 }
 
-variable "key_name" {
-  default = "pri_ohio"
-}
+variable "instance_key_name_in" {}
 
 variable "associate_public_ip_address" {
   default = "true"

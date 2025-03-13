@@ -58,7 +58,7 @@ module "nat_gateway_module" {
 
 module "instance_module" {
 
-  source                       = "../modules/public_instance"
+  source                       = "../modules/compute"
   subnet_1_id_in               = module.vpc_module.subnet_1_id_out
   instance_sg_in               = module.sg_module.instance_sg_out
   project_tag_in               = local.current_project_tag
@@ -68,6 +68,7 @@ module "instance_module" {
   ami_id_in                    = var.ec2_ami_ids["${var.enter_user_name_based_on_ami}"]
   linux_user_in                = var.enter_user_name_based_on_ami
   instance_root_volume_size_in = var.instance_root_volume_size
+  instance_key_name_in         = var.instance_key_name
 
 }
 

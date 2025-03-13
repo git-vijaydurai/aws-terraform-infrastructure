@@ -1,9 +1,9 @@
 #!/bin/bash
 
-HOSTED_ZONE_ID="Z094166638K8WP1O0K6YY"
+HOSTED_ZONE_ID="Z01154692EO6EZB483936"
 NEW_RECORD_NAME=$(hostname)
 NEW_IP_ADDRESS=$(curl ifconfig.me)
-TTL=300
+TTL=60
 
 # Add the new record to the existing set
 

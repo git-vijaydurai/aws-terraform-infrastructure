@@ -6,7 +6,7 @@ resource "aws_instance" "instance" {
   ami                         = var.ami_id_in
   subnet_id                   = var.subnet_1_id_in
   instance_type               = var.instance_type_in
-  key_name                    = var.key_name
+  key_name                    = var.instance_key_name_in
   associate_public_ip_address = var.associate_public_ip_address
   vpc_security_group_ids      = [var.instance_sg_in]
   iam_instance_profile        = "admin"
@@ -50,7 +50,7 @@ resource "aws_instance" "instance" {
   connection {
     type        = "ssh"
     user        = var.linux_user_in
-    private_key = file("/home/e1087/.pri_ohio.pem")
+    private_key = file("/home/e1087/.ohio-key.pem")
     host        = self.public_ip
   }
 
@@ -64,7 +64,7 @@ resource "aws_instance" "instance" {
     connection {
       type        = "ssh"
       user        = var.linux_user_in
-      private_key = file("/home/e1087/.pri_ohio.pem")
+      private_key = file("/home/e1087/.ohio-key.pem")
       host        = self.public_ip
     }
   }
@@ -96,7 +96,7 @@ resource "null_resource" "dns_re-entry" {
     connection {
       type        = "ssh"
       user        = var.linux_user_in
-      private_key = file("/home/e1087/.pri_ohio.pem")
+      private_key = file("/home/e1087/.ohio-key.pem")
       host        = aws_instance.instance.public_ip
     }
 
